@@ -1,34 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HabitHow – Coming Soon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HabitHow — Build Discipline</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      font-family: system-ui, sans-serif;
-      background: #f9fafb;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      color: #1e293b;
       display: flex;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
       flex-direction: column;
-      color: #111827;
     }
     h1 {
-      font-size: 2.5rem;
+      font-weight: 700;
+      font-size: 3rem;
+      margin: 0 0 0.5rem 0;
+      background: linear-gradient(90deg, #4ade80, #22c55e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 5s ease infinite;
     }
-    p {
-      margin-top: 0.5rem;
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+    .tagline {
+      font-style: italic;
+      font-size: 1.2rem;
+      color: #475569;
+      margin-bottom: 2rem;
+    }
+    .content-text {
       font-size: 1.1rem;
-      color: #6b7280;
+      color: #334155;
+      margin-bottom: 2rem;
+      max-width: 360px;
+      line-height: 1.4;
+      user-select: none;
+    }
+    .status {
+      font-weight: 600;
+      color: #22c55e;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      user-select: none;
+    }
+    .dot {
+      height: 14px;
+      width: 14px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+      box-shadow: 0 0 8px 1px #22c55e88;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+    form {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      max-width: 380px;
+      width: 100%;
+    }
+    input[type="email"] {
+      flex-grow: 1;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 2px solid #94a3b8;
+      border-radius: 8px;
+      outline-offset: 2px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="email"]:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 8px 1px #22c55e88;
+    }
+    button {
+      background-color: #22c55e;
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #16a34a;
+    }
+    /* Responsive */
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      .content-text {
+        max-width: 280px;
+      }
+      form {
+        flex-direction: column;
+        gap: 12px;
+      }
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <h1>HabitHow</h1>
-  <p>Build discipline, one dot at a time.</p>
-  <p>Coming soon.</p>
+  <p class="tagline">Build discipline, one dot at a time.</p>
+  <p class="content-text">
+    We're working hard to bring HabitHow to life.  
+    Join our early access list and be the first to get updates!
+  </p>
+
+  <!-- <form id="notifyForm" onsubmit="handleSubmit(event)">
+    <input type="email" id="email" placeholder="Enter your email" required />
+    <button type="submit">Notify Me</button>
+  </form> -->
+
+  <div class="status" aria-live="polite" style="margin-top: 1rem; min-height: 24px;"></div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('email');
+      const statusDiv = document.querySelector('.status');
+      const email = emailInput.value.trim();
+
+      if (!email) return;
+
+      // For demo, just show success message.
+      // You can replace this with real API call later.
+      statusDiv.textContent = `Thanks, ${email}! We'll keep you updated.`;
+      emailInput.value = '';
+    }
+  </script>
 </body>
 </html>
